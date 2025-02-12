@@ -3,7 +3,6 @@
 import HeroSection from "@/components/HeroSection";
 import HomeHead from "@/components/HomeHead";
 import { ProductGrid } from "@/components/ProductCard";
-import Slider from "@/components/Slider/Slider";
 import { ZoomGrid } from "@/components/ZoomImage";
 import { products } from "@/constants";
 import { Carousel } from "flowbite-react";
