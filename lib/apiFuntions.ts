@@ -3,7 +3,11 @@ import axios from "axios";
 // export const fetchCatgoriesData = async () => {};
 export const fetchCatgoriesData = async () => {
   try {
-    const res = await axios.get("/api/categories");
+    const res = await axios.get("/api/categories", {
+      headers: {
+        cache: "no-store",
+      },
+    });
     console.log(res.data, "cate");
     return res?.data?.data;
   } catch (error) {
@@ -13,7 +17,11 @@ export const fetchCatgoriesData = async () => {
 };
 export const fetchProductById = async (id: string) => {
   try {
-    const response = await axios.get(`/api/product/${id}`);
+    const response = await axios.get(`/api/product/${id}`, {
+      headers: {
+        cache: "no-store",
+      },
+    });
     return response.data.data;
   } catch (error: unknown) {
     throw new Error("Failed to fetch product data", { cause: error });

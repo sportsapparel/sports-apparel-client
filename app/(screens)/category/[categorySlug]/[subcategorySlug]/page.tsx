@@ -4,8 +4,8 @@ import { db } from "@/lib/db/db";
 import { categories, gallery, products, subcategories } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
-
 // Types
 interface PageProps {
   params: {
@@ -30,6 +30,7 @@ async function getPageData(
   categorySlug: string,
   subcategorySlug: string
 ): Promise<PageData | null> {
+  noStore();
   const [categoryData] = await db
     .select()
     .from(categories)
