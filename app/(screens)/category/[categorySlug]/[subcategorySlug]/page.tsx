@@ -87,18 +87,18 @@ export async function generateMetadata({
       data.subcategory.metaDescription || data.subcategory.description,
     keywords: data.subcategory.keywords || "",
     openGraph: {
-      title: data.subcategory.metaTitle ?? data.subcategory.name,
+      title: data.subcategory.metaTitle ?? data.subcategory.name ?? "",
       description:
-        data.subcategory.metaDescription ?? data.subcategory.description,
+        data.subcategory.metaDescription ?? data.subcategory.description ?? "",
       url: data.subcategory.canonicalUrl ?? "",
       siteName: "Your Site Name",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: data.subcategory.metaTitle || data.subcategory.name,
+      title: data.subcategory.metaTitle ?? data.subcategory.name ?? "",
       description:
-        data.subcategory.metaDescription || data.subcategory.description,
+        data.subcategory.metaDescription ?? data.subcategory.description ?? "",
     },
     alternates: {
       canonical: data.subcategory.canonicalUrl,

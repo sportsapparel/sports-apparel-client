@@ -16,5 +16,5 @@ export interface Category {
 }
 
 export interface HeaderProps {
-  categories: Category[];
+  categories?: Category[];
 }
