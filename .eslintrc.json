@@ -1,0 +1,7 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn", // or "off" to completely disable
+    "react-hooks/exhaustive-deps": "warn" // or "off" to completely disable
+  }
+}
