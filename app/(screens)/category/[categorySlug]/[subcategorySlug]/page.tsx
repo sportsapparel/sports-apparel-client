@@ -74,6 +74,8 @@ async function getPageData(
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
+  noStore();
+
   const data = await getPageData(params.categorySlug, params.subcategorySlug);
 
   if (!data) {
