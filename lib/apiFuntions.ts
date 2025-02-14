@@ -18,9 +18,7 @@ export const fetchCatgoriesData = async () => {
 export const fetchProductById = async (id: string) => {
   try {
     const response = await axios.get(`/api/product/${id}`, {
-      headers: {
-        cache: "no-store",
-      },
+      headers: { cache: "no-store" },
     });
     return response.data.data;
   } catch (error: unknown) {
