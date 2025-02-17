@@ -74,12 +74,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <ThemeModeScript />
 
         {/* Preload fonts for better performance */}
-        <link
+        {/* <link
           rel="preload"
           href="/fonts/AvenirLTStd-Heavy.otf"
           as="font"
@@ -92,9 +92,10 @@ export default function RootLayout({
           as="font"
           type="font/otf"
           crossOrigin="anonymous"
-        />
+        /> */}
       </head>
       <body
+        suppressHydrationWarning
         className={`${avenirHeavy.variable} ${avenirRoman.variable} font-sans antialiased bg-backgroundColor text-textColor`}
       >
         {/* Header Component */}

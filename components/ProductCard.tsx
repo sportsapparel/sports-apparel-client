@@ -59,7 +59,7 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 // Example usage with ProductCard
 interface ProductCardProps {
   id?: string | number;
-  imageUrl: string | undefined;
+  imageUrl: string;
   title?: string;
   description?: number | string;
 }
@@ -75,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="group relative flex flex-col">
       <div className="relative aspect-[3/4]  overflow-hidden w-full ">
         <ImageWithFallback
-          src={imageUrl || ""}
+          src={imageUrl}
           alt={title || "product image"}
           fill
           className="object-contain"

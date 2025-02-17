@@ -1,4 +1,3 @@
-import flowbite from "flowbite-react/tailwind";
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 
@@ -8,7 +7,6 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./screens/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    flowbite.content(),
   ],
   theme: {
     extend: {
@@ -61,7 +59,6 @@ const config: Config = {
           // color: theme('colors.color') // Adjust color as needed
         },
       });
-      flowbite.plugin();
     }),
   ],
 } as const;

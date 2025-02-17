@@ -1,11 +1,17 @@
+import dynamic from "next/dynamic";
 // app/category/[categorySlug]/[subcategorySlug]/page.tsx
-import { ProductCard } from "@/components/ProductCard";
 import { db } from "@/lib/db/db";
 import { categories, gallery, products, subcategories } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import Link from "next/link";
+import { ProductCard } from "@/components/ProductCard";
+
+// const { ProductCard } = dynamic(() => import("@/components/ProductCard"), {
+//   ssr: false,
+// });
+
 // Types
 interface PageProps {
   params: Promise<{
@@ -157,9 +163,9 @@ export default async function SubCategoryPage(props: PageProps) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 9 4-4-4-4"
                   />
                 </svg>
@@ -182,9 +188,9 @@ export default async function SubCategoryPage(props: PageProps) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 9 4-4-4-4"
                   />
                 </svg>
@@ -199,7 +205,7 @@ export default async function SubCategoryPage(props: PageProps) {
 
       {/* Category Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">{data.subcategory.name}</h1>
+        {/* <h1 className="text-3xl font-bold mb-4">{data.subcategory.name}</h1> */}
         {data.subcategory.description && (
           <p className="text-gray-600">{data.subcategory.description}</p>
         )}
@@ -210,7 +216,7 @@ export default async function SubCategoryPage(props: PageProps) {
           <div key={productData.product.id}>
             <ProductCard
               id={productData.product.id}
-              imageUrl={productData.thumbnail?.imageUrl}
+              imageUrl={productData?.thumbnail?.imageUrl ?? ""}
               title={productData.product.name}
               description={productData.product.name}
             />
@@ -220,7 +226,17 @@ export default async function SubCategoryPage(props: PageProps) {
 
       {data.products.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500">No products found in this category.</p>
+          <p className="text-gray-500">
+            No products found in this category.{" "}
+            <i
+              className="fa-duotone fa-solid fa-face-spiral-eyes"
+              // style={{"--fa-primary-color: #000000; --fa-secondary-color: #ad6343;"}}
+              style={{
+                "--fa-primary-color": "#000000",
+                "--fa-secondary-color": "#ad6343",
+              }}
+            ></i>
+          </p>
         </div>
       )}
     </div>

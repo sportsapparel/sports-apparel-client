@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -18,9 +18,10 @@ interface ImageData {
 
 interface CarouselProps {
   images: ImageData[];
+  link: string;
 }
 
-export const Carousel: React.FC<CarouselProps> = ({ images }) => {
+export const Carousel: React.FC<CarouselProps> = ({ images, link }) => {
   console.log(images, "images from carousel");
 
   return (
@@ -29,49 +30,62 @@ export const Carousel: React.FC<CarouselProps> = ({ images }) => {
         {`
           .swiper {
             width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
+            height: 100%;
           }
 
           .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           .swiper-slide img {
             display: block;
             width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
         `}
       </style>
 
       <section className="p-10 ">
         <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={6}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
+          slidesPerView={1}
+          spaceBetween={10}
+          pagination={{
+            clickable: true,
           }}
-          //   pagination={true}
-          modules={[EffectCoverflow, Pagination]}
+          allowSlideNext
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
+          modules={[Navigation, Pagination]}
           className="mySwiper"
         >
           {images?.map((data) => (
             <SwiperSlide key={data.id}>
-              <Link href={`/category/${data.slug}`}>
+              <Link href={`${link}/${data.slug}`}>
                 <ImageWithFallback
                   src={data.image}
                   height={1000}
                   width={1000}
-                  className="object-contain h-full"
+                  className="object-contain min-h-40 w-fit "
                   alt={data.name} // Added alt text dynamically for accessibility
                   sizes="(min-width: 1280px) 17.5rem, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
                 />

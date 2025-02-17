@@ -1,10 +1,7 @@
-import {
-  CurrencyDollarIcon,
-  GlobeAmericasIcon,
-} from "@heroicons/react/24/outline";
+"use server";
 import { db } from "@/lib/db/db";
-import { products, gallery, productImages } from "@/lib/db/schema";
-import { eq, and } from "drizzle-orm";
+import { gallery, productImages, products } from "@/lib/db/schema";
+import { and, eq } from "drizzle-orm";
 import { unstable_noStore as noStore } from "next/cache";
 
 interface ProductThumbnail {
@@ -89,7 +86,7 @@ async function getProduct(productId: string): Promise<Product | null> {
         : null,
       images: productImagesData.map(({ image, displayOrder }) => ({
         id: image?.id ?? "",
-        url: image?.imageUrl ?? "",
+        url: image?.imageUrl,
         alt: image?.altText || productData.product.name,
         originalName: image?.originalName ?? "",
         fileSize: image?.fileSize ?? 0,
@@ -112,11 +109,9 @@ async function getProduct(productId: string): Promise<Product | null> {
   }
 }
 
-export default async function ProductDetail(
-  props: {
-    params: Promise<{ productId: string }>;
-  }
-) {
+export default async function ProductDetail(props: {
+  params: Promise<{ productId: string }>;
+}) {
   const params = await props.params;
   noStore();
   const product = await getProduct(params.productId);

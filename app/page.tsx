@@ -6,9 +6,6 @@ import { ProductGrid } from "@/components/ProductCard";
 import { ZoomGrid } from "@/components/ZoomImage";
 import { products } from "@/constants";
 import { images } from "@/constants/imageUrls";
-import { Carousel } from "flowbite-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 
 const items = [
   {
@@ -60,7 +57,7 @@ const Home = () => (
         className="grid grid-cols-4 lg:grid-cols-3 gap-10 md:grid-cols-2 sm-to-xs:grid-cols-1 sm-to-xs:p-20 xs:p-10 "
         products={products.slice(0, 4)}
       />
-      <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+      {/* <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
         <Carousel
           leftControl={
             <>
@@ -83,7 +80,7 @@ const Home = () => (
             </div>
           ))}
         </Carousel>
-      </div>
+      </div> */}
     </main>
   </>
 );

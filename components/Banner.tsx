@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface BannerProps {
-  image?: string;
+  image: string;
   title?: string;
   subtitle?: string;
   description?: string;
@@ -34,7 +34,7 @@ const Banner: React.FC<BannerProps> = ({
         {!ImageRight && (
           <div className={styles.imageContainer}>
             <Image
-              src={image || ""}
+              src={image}
               alt={imageAlt}
               className={styles.image}
               height={2000}
@@ -51,7 +51,7 @@ const Banner: React.FC<BannerProps> = ({
         {ImageRight && (
           <div className={styles.imageContainer}>
             <Image
-              src={image || ""}
+              src={image}
               alt={imageAlt}
               className={styles.image}
               height={2000}
