@@ -112,11 +112,12 @@ async function getProduct(productId: string): Promise<Product | null> {
   }
 }
 
-export default async function ProductDetail({
-  params,
-}: {
-  params: { productId: string };
-}) {
+export default async function ProductDetail(
+  props: {
+    params: Promise<{ productId: string }>;
+  }
+) {
+  const params = await props.params;
   noStore();
   const product = await getProduct(params.productId);
 
@@ -178,7 +179,6 @@ export default async function ProductDetail({
                 ))}
               </div>
             </section>
-
             {/* Description */}
             <section className="border-t border-gray-200 pt-6">
               <h2 className="text-lg font-medium text-gray-900">Description</h2>
@@ -188,11 +188,10 @@ export default async function ProductDetail({
                   : "No description available"}
               </div>
             </section>
-
             {/* SEO Information */}
-            <section className="border-t border-gray-200 pt-6">
+            {/* <section className="border-t border-gray-200 pt-6">
               <h2 className="text-lg font-medium text-gray-900">
-                Product Information
+                Product Details
               </h2>
               <div className="mt-4 bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-500">
@@ -200,7 +199,7 @@ export default async function ProductDetail({
                   {product.seo.keywords}
                 </p>
               </div>
-            </section>
+            </section> */}
 
             {/* Policies */}
             <section className="border-t border-gray-200 pt-6">
@@ -208,8 +207,7 @@ export default async function ProductDetail({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
                   <dt>
-                    <i className="fa fa-globe-asia"></i>
-
+                    <i className="fa-duotone fa-solid fa-earth-asia mr-1"></i>
                     <span className="mt-4 text-sm font-medium text-gray-900">
                       Delivery Info
                     </span>
@@ -222,14 +220,29 @@ export default async function ProductDetail({
             </section>
 
             {/* Contact Button */}
-            <div className="pt-6">
+            <div className="pt-6 flex">
               <a
                 href={`https://wa.me/${product.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
+                className="w-full px-10 py-3 text-center
+                            font-thin 
+                            bg-btnColor text-white 
+                            hover:bg-btnHoverColor  
+                            transition-colors 
+                            duration-200 
+                            focus:outline-none 
+                            focus:ring-2 
+                            focus:ring-btnColor 
+                            focus:ring-offset-2 
+                            disabled:bg-btnColor/70 
+                            disabled:cursor-not-allowed"
               >
-                Contact via WhatsApp
+                Contact via WhatsApp{" "}
+                <i
+                  className="fa-brands fa-whatsapp ml-1"
+                  style={{ color: "#63E6BE" }}
+                ></i>
               </a>
             </div>
           </div>

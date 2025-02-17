@@ -12,8 +12,9 @@ import { eq, and, inArray } from "drizzle-orm";
 
 export async function GET(
   req: Request,
-  { params }: { params: { categorySlug: string; subcategorySlug: string } }
+  props: { params: Promise<{ categorySlug: string; subcategorySlug: string }> }
 ) {
+  const params = await props.params;
   try {
     const { categorySlug, subcategorySlug } = params;
 

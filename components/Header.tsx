@@ -1,7 +1,7 @@
 "use client";
 
 import { useFetchData } from "@/hooks/useFetchData";
-import { fetchCatgoriesData } from "@/lib/apiFuntions";
+import { fetchCategoriesData } from "@/lib/apiFuntions";
 import { Category, HeaderProps } from "@/types";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = () => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const pathname = usePathname();
   const { data: categories, loading } =
-    useFetchData<Category[]>(fetchCatgoriesData);
+    useFetchData<Category[]>(fetchCategoriesData);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };

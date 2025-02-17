@@ -28,7 +28,7 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   if (error) {
     return (
       <div
-        className={`flex flex-col items-center justify-center bg-gray-100 ${className}`}
+        className={`flex flex-col items-center justify-center ${className}`}
         style={
           fill
             ? { position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }
@@ -73,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const router = useRouter();
   return (
     <div className="group relative flex flex-col">
-      <div className="relative aspect-[3/4] overflow-hidden w-full bg-gray-100">
+      <div className="relative aspect-[3/4]  overflow-hidden w-full ">
         <ImageWithFallback
           src={imageUrl || ""}
           alt={title || "product image"}
@@ -81,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className="object-contain"
           sizes="(max-width: 36rem) 100vw, (max-width: 48rem) 50vw, (max-width: 62rem) 33.33vw, 25vw"
         />
-        <div className="absolute bottom-0 left-0 right-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+        <div className="absolute bottom-0 left-0 right-0 translate-y-[7vh] transition-transform duration-300 group-hover:translate-y-0">
           <button
             onClick={() => router.push(`/product/${id}`)}
             className="w-full bg-btnColor py-4 text-center text-sm text-white transition-colors hover:bg-btnHoverColor"

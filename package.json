@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -17,24 +17,30 @@
     "@neondatabase/serverless": "^0.10.4",
     "@paralleldrive/cuid2": "^2.2.2",
     "axios": "^1.7.9",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.1",
     "flowbite-react": "^0.10.2",
     "lucide-react": "^0.474.0",
-    "next": "14.2.21",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "15.1.7",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "swiper": "^11.2.4",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "drizzle-kit": "^0.30.4",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "drizzle-kit": "^0.19.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.21",
+    "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4"
   }
 }

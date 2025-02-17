@@ -4,7 +4,18 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeModeScript } from "flowbite-react";
-
+import "./font-6/css/all.css";
+import "./font-6/css/sharp-light.css";
+import "./font-6/css/sharp-regular.css";
+import "./font-6/css/sharp-solid.css";
+// import "./font-6/css/sharp-thin.css";
+// import "./font-6/css/sharp-duotone-light.css";
+// import "./font-6/css/sharp-duotone-regular.css";
+// import "./font-6/css/sharp-duotone-solid.css";
+// import "./font-6/css/sharp-duotone-thin.css";
+// import "./font-6/css/duotone-light.css";
+// import "./font-6/css/duotone-regular.css";
+// import "./font-6/css/duotone-thin.css";
 // Load custom fonts
 const avenirHeavy = localFont({
   src: "./fonts/AvenirLTStd-Heavy.otf",
