@@ -231,10 +231,12 @@ export default async function SubCategoryPage(props: PageProps) {
             <i
               className="fa-duotone fa-solid fa-face-spiral-eyes"
               // style={{"--fa-primary-color: #000000; --fa-secondary-color: #ad6343;"}}
-              style={{
-                "--fa-primary-color": "#000000",
-                "--fa-secondary-color": "#ad6343",
-              }}
+              style={
+                {
+                  "--fa-primary-color": "#000000",
+                  "--fa-secondary-color": "#ad6343",
+                } as React.CSSProperties
+              }
             ></i>
           </p>
         </div>

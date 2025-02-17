@@ -3,14 +3,14 @@ import { categories, gallery, products, subcategories } from "@/lib/db/schema";
 import { count, desc, eq, sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     // Extract query parameters for potential filtering or pagination
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1", 2);
-    const limit = parseInt(searchParams.get("limit") || "2", 2); // Ensure this is correct
+    const page = parseInt(searchParams.get("page") || "1", 10); // Use base 10 for parseInt
+    const limit = parseInt(searchParams.get("limit") || "10", 10); // Use base 10 for parseInt
     const offset = (page - 1) * limit;
-    console.log(page, limit, offset);
+
     // Get total count of active products for pagination metadata
     const [{ totalCount }] = await db
       .select({ totalCount: count(products.id) })
@@ -20,7 +20,6 @@ export async function GET(request: Request) {
     // Get products with related data using joins
     const productsWithDetails = await db
       .select({
-        // Product fields
         id: products.id,
         name: products.name,
         slug: products.slug,
@@ -31,73 +30,23 @@ export async function GET(request: Request) {
         whatsappNumber: products.whatsappNumber,
         isActive: products.isActive,
         createdAt: products.createdAt,
-
-        // SEO-specific fields
         metaTitle: products.metaTitle,
         metaDescription: products.metaDescription,
         keywords: products.keywords,
         canonicalUrl: products.canonicalUrl,
         structuredData: products.structuredData,
-
-        // Thumbnail image fields
         thumbnail: {
           id: gallery.id,
           imageUrl: gallery.imageUrl,
           originalName: gallery.originalName,
-          altText: gallery.altText, // Include alt text for SEO
+          altText: gallery.altText,
         },
-
-        // Category fields
-        // category: {
-        //   id: categories.id,
-        //   name: categories.name,
-        //   slug: categories.slug,
-        //   metaTitle: categories.metaTitle,
-        //   metaDescription: categories.metaDescription,
-        // },
-
-        // // Subcategory fields
-        // subcategory: {
-        //   id: subcategories.id,
-        //   name: subcategories.name,
-        //   slug: subcategories.slug,
-        //   metaTitle: subcategories.metaTitle,
-        //   metaDescription: subcategories.metaDescription,
-        // },
-
-        // Additional images for the product
-        // images:
-        //   sql <
-        //   Array<{
-        //     id: number;
-        //     imageUrl: string;
-        //     altText: string;
-        //   }>`(
-        //   SELECT json_agg(
-        //     json_build_object(
-        //       'id', g.id,
-        //       'imageUrl', g.image_url,
-        //       'altText', g.alt_text
-        //     )
-        //   )
-        //   FROM product_images pi
-        //   JOIN gallery g ON pi.image_id = g.id
-        //   WHERE pi.product_id = products.id
-        // )`,
       })
       .from(products)
-      // Join with subcategories
-      //   .leftJoin(subcategories, eq(products.subcategoryId, subcategories.id))
-      // Join with categories through subcategories
-      //   .leftJoin(categories, eq(subcategories.categoryId, categories.id))
-      // Join with gallery for thumbnail
       .leftJoin(gallery, eq(products.thumbnailId, gallery.id))
-      // Only get active products
       .where(eq(products.isActive, true))
-      // Pagination
       .limit(limit)
       .offset(offset)
-      // Optional: Add sorting if needed
       .orderBy(desc(products.createdAt));
 
     // Construct pagination metadata
@@ -133,15 +82,18 @@ export async function GET(request: Request) {
       products: productsWithDetails,
       pagination,
       summary: productSummary,
-      // Include global SEO metadata
       seoMetadata: {
         title: "Our Products | Sports Apparel",
         description:
           "Explore our wide range of high-quality products across various categories.",
-        canonicalUrl: "https://sports-apparel.vercel.app/shop", // Replace with your actual URL
+        canonicalUrl: "https://sports-apparel.vercel.app/shop",
       },
     });
   } catch (error) {
-    return error;
+    // Return a proper error response
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

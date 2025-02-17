@@ -1,11 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import Image from "next/image";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { ImageWithFallback } from "./ProductCard";
-import Link from "next/link";
 
 interface ImageData {
   id: number;
