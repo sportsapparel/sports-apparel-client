@@ -1,15 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle newsletter signup logic here
     setIsSubscribed(true);
   };
+
+  useEffect(() => {
+    setIsClient(true); // This will set isClient to true after the first render
+  }, []);
+
+  if (!isClient) {
+    return null; // or render a loading skeleton
+  }
 
   return (
     <footer className="bg-[#FCF6F2]">
