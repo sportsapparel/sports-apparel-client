@@ -2,6 +2,7 @@ import { db } from "@/lib/db/db";
 import { gallery, productImages, products } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
 import { Metadata } from "next";
+
 interface ProductThumbnail {
   id: string;
   url: string;
@@ -28,20 +29,18 @@ interface Product {
   name: string;
   slug: string;
   description: string;
-  details: Record<string, string> | object | any;
+  details: any;
   minOrder: string;
   deliveryInfo: string;
   whatsappNumber: string;
-  thumbnail: ProductThumbnail | any | null;
-  images: ProductImage[] | any[];
+  thumbnail: ProductThumbnail | any;
+  images: ProductImage[] | any;
   seo: ProductSeo;
   createdAt: Date;
 }
 
 async function getProduct(productId: string): Promise<Product | null> {
-  // noStore();
   try {
-    console.log(productId, "productId");
     const [productData] = await db
       .select({
         product: products,
@@ -50,7 +49,7 @@ async function getProduct(productId: string): Promise<Product | null> {
       .from(products)
       .leftJoin(gallery, eq(products.thumbnailId, gallery.id))
       .where(and(eq(products.id, productId), eq(products.isActive, true)));
-    console.log(productData, "product");
+
     if (!productData) return null;
 
     const productImagesData = await db
@@ -62,7 +61,7 @@ async function getProduct(productId: string): Promise<Product | null> {
       .leftJoin(gallery, eq(productImages.imageId, gallery.id))
       .where(eq(productImages.productId, productId))
       .orderBy(productImages.displayOrder);
-    console.log(productImagesData, "productImagesData");
+
     return {
       id: productData.product.id,
       name: productData.product.name,
@@ -100,19 +99,20 @@ async function getProduct(productId: string): Promise<Product | null> {
       },
       createdAt: productData.product.createdAt ?? new Date(),
     };
-    // console.log(product, "product");
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;
   }
 }
+
+type PageProps = {
+  params: Promise<{ productId: string }>;
+};
 export async function generateMetadata({
   params,
-}: {
-  params: { productId: string };
-}): Promise<Metadata> {
-  // noStore();
-  const product = await getProduct(params.productId);
+}: PageProps): Promise<Metadata> {
+  const { productId } = await params; // Await the resolved params
+  const product = await getProduct(productId);
 
   if (!product) {
     return {
@@ -144,14 +144,9 @@ export async function generateMetadata({
     },
   };
 }
-
-export default async function ProductDetail({
-  params,
-}: {
-  params: { productId: string };
-}) {
-  // noStore();
-  const product = await getProduct(params.productId);
+export default async function ProductPage({ params }: PageProps) {
+  const { productId } = await params; // Await the resolved params
+  const product = await getProduct(productId);
 
   if (!product) {
     return (
@@ -181,7 +176,7 @@ export default async function ProductDetail({
               </div>
             )}
             <div className="grid grid-cols-3 gap-4 mt-4">
-              {product.images.map((image) => (
+              {product.images.map((image: any) => (
                 <div key={image.id} className="rounded-lg overflow-hidden">
                   <img
                     src={image.url}
