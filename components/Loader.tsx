@@ -3,29 +3,39 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center max-h-dvh h-full w-full">
+    <div className="flex justify-center items-center h-dvh fixed z-[9999] bg-textColor top-0 right-0 w-full">
       <div className="loader"></div>
       <style jsx>{`
         .loader {
-          width: 60px;
-          aspect-ratio: 2;
-          --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
-          background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
-          background-size: calc(100% / 3) 50%;
-          animation: l3 1s infinite linear;
+          width: 48px;
+          height: 48px;
+          border: 3px solid #fff;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          box-sizing: border-box;
+          animation: rotation 1s linear infinite;
         }
-        @keyframes l3 {
-          20% {
-            background-position: 0% 0%, 50% 50%, 100% 50%;
+        .loader::after {
+          content: "";
+          box-sizing: border-box;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 3px solid;
+          border-color: #ff3d00 transparent;
+        }
+
+        @keyframes rotation {
+          0% {
+            transform: rotate(0deg);
           }
-          40% {
-            background-position: 0% 100%, 50% 0%, 100% 50%;
-          }
-          60% {
-            background-position: 0% 50%, 50% 100%, 100% 0%;
-          }
-          80% {
-            background-position: 0% 50%, 50% 50%, 100% 100%;
+          100% {
+            transform: rotate(360deg);
           }
         }
       `}</style>

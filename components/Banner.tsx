@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface BannerProps {
   image: string;
@@ -32,7 +33,19 @@ const Banner: React.FC<BannerProps> = ({
     <div className={styles.container}>
       <div className="grid grid-cols-2 md-to-xs:grid-cols-1 place-items-center gap-10">
         {!ImageRight && (
-          <div className={styles.imageContainer}>
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 1 % 2 === 0 ? 100 : -100, // Alternate between top and bottom
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{ once: true }} // Ensures animation only happens once
+            transition={{ duration: 1, delay: 1 * 0.1 }} // Add delay for staggered effect
+            className={styles.imageContainer}
+          >
             <Image
               src={image}
               alt={imageAlt}
@@ -40,16 +53,40 @@ const Banner: React.FC<BannerProps> = ({
               height={2000}
               width={2000}
             />
-          </div>
+          </motion.div>
         )}
 
-        <div className={styles.contentContainer}>
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: ImageRight ? -100 : 100, // Alternate between top and bottom
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+          }}
+          viewport={{ once: true }} // Ensures animation only happens once
+          transition={{ duration: 1, delay: 1 * 0.1 }} // Add delay for staggered effect
+          className={styles.contentContainer}
+        >
           <h2 className="">{title}</h2>
           <p className="text-lg font-light">{subtitle}</p>
           <p className="text-base font-extralight ">{description}</p>
-        </div>
+        </motion.div>
         {ImageRight && (
-          <div className={styles.imageContainer}>
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 1 % 2 === 0 ? -100 : 100, // Alternate between top and bottom
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{ once: true }} // Ensures animation only happens once
+            transition={{ duration: 1, delay: 1 * 0.1 }} // Add delay for staggered effect
+            className={styles.imageContainer}
+          >
             <Image
               src={image}
               alt={imageAlt}
@@ -57,7 +94,7 @@ const Banner: React.FC<BannerProps> = ({
               height={2000}
               width={2000}
             />
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

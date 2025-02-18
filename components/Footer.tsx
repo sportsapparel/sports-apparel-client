@@ -144,7 +144,7 @@ const Footer = () => {
         {/* Copyright Section */}
       </div>
       <div className=" bg-[#5D6956] text-center text-sm text-white p-3 ">
-        <p>© 2035 by ETHKL. Powered and secured by Wix</p>
+        <p>© 2025 by Sports Apparel</p>
       </div>
     </footer>
   );

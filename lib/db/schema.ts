@@ -83,7 +83,16 @@ export const gallery = pgTable("gallery", {
   altText: varchar("alt_text", { length: 255 }), // Alt text for images
   createdAt: timestamp("created_at").defaultNow(),
 });
-
+export const contactUs = pgTable("contact_us", {
+  id: serial("id").primaryKey(), // Auto-incrementing primary key
+  name: text("name").notNull(), // Name of the user (required)
+  email: varchar("email", { length: 255 }).notNull(), // Email address (required)
+  subject: text("subject").notNull(), // Subject of the message (required)
+  message: text("message").notNull(), // Message content (required)
+  createdAt: timestamp("created_at", { mode: "date", precision: 6 })
+    .defaultNow()
+    .notNull(), // Timestamp with timezone and microsecond precision
+});
 // Junction table for products and gallery images
 export const productImages = pgTable("product_images", {
   id: serial("id").primaryKey(),

@@ -1,10 +1,9 @@
 "use client";
-import { Carousel } from "@/components/Carousal";
 import CategorySection from "@/components/Category";
 import { Pagination } from "@/components/Common";
-import { ProductCard, ProductGrid } from "@/components/ProductCard";
+import { ProductCard } from "@/components/ProductCard";
 import SearchBar from "@/components/SearchBar";
-import { CarouselSkeleton, ProductCardSkeleton } from "@/components/Skeleton";
+import { ProductCardSkeleton } from "@/components/Skeleton";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useFilteredData } from "@/hooks/useFilteredData";
 import {
@@ -13,7 +12,7 @@ import {
 } from "@/lib/apiFuntions";
 import { Subcategory } from "@/types";
 import { useParams } from "next/navigation";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 const Category = () => {
   const { categorySlug } = useParams();
@@ -97,19 +96,27 @@ const Category = () => {
             placeholder="Search by name, slug, category, or subcategory"
           />
           <div className="grid grid-cols-4 lg:grid-cols-3 gap-10 md:grid-cols-2 sm-to-xs:grid-cols-1 sm-to-xs:p-20 xs:p-10">
-            {productLoading
-              ? [...Array(itemsPerPage)].map((_, index) => (
-                  <ProductCardSkeleton key={index} />
-                ))
-              : filterProductData?.map((product: any, index: any) => (
-                  <ProductCard
-                    key={index}
-                    id={product.id}
-                    imageUrl={product.image}
-                    title={product.name}
-                    description={product.description}
-                  />
-                ))}
+            {productLoading ? (
+              [...Array(itemsPerPage)].map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))
+            ) : filterProductData.length > 0 ? (
+              filterProductData?.map((product: any, index: any) => (
+                <ProductCard
+                  key={index}
+                  id={product.id}
+                  imageUrl={product.image}
+                  title={product.name}
+                  description={product.description}
+                />
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center col-span-full p-10">
+                <p className="text-gray-600 text-xs uppercase">
+                  No product found
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

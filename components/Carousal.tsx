@@ -88,11 +88,11 @@ export const Carousel: React.FC<CarouselProps> = ({ images, link }) => {
                       src={data.image}
                       height={1000}
                       width={1000}
-                      className="object-contain min-h-40 w-fit"
+                      className="object-cover min-h-40 w-fit"
                       alt={data.name}
                       sizes="(min-width: 1280px) 17.5rem, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 from-60%  flex justify-center items-center text-white text-lg font-semibold opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20 from-40%  flex justify-center items-center text-white text-lg font-semibold opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                       {data.name}
                     </div>
                   </Link>

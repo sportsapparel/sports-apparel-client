@@ -1,9 +1,7 @@
-"use server";
 import { db } from "@/lib/db/db";
 import { gallery, productImages, products } from "@/lib/db/schema";
 import { and, eq } from "drizzle-orm";
-import { unstable_noStore as noStore } from "next/cache";
-
+import { Metadata } from "next";
 interface ProductThumbnail {
   id: string;
   url: string;
@@ -41,7 +39,7 @@ interface Product {
 }
 
 async function getProduct(productId: string): Promise<Product | null> {
-  noStore();
+  // noStore();
   try {
     console.log(productId, "productId");
     const [productData] = await db
@@ -108,12 +106,51 @@ async function getProduct(productId: string): Promise<Product | null> {
     return null;
   }
 }
+export async function generateMetadata({
+  params,
+}: {
+  params: { productId: string };
+}): Promise<Metadata> {
+  // noStore();
+  const product = await getProduct(params.productId);
 
-export default async function ProductDetail(props: {
-  params: Promise<{ productId: string }>;
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "This product does not exist.",
+    };
+  }
+
+  return {
+    title: product.seo.metaTitle || product.name,
+    description: product.seo.metaDescription || "Explore this amazing product.",
+    keywords: product.seo.keywords || "",
+    openGraph: {
+      title: product.seo.metaTitle || product.name,
+      description:
+        product.seo.metaDescription || "Explore this amazing product.",
+      images: product.thumbnail
+        ? [{ url: product.thumbnail.url, alt: product.thumbnail.alt }]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.seo.metaTitle || product.name,
+      description:
+        product.seo.metaDescription || "Explore this amazing product.",
+      images: product.thumbnail
+        ? [{ url: product.thumbnail.url, alt: product.thumbnail.alt }]
+        : [],
+    },
+  };
+}
+
+export default async function ProductDetail({
+  params,
+}: {
+  params: { productId: string };
 }) {
-  const params = await props.params;
-  noStore();
+  // noStore();
   const product = await getProduct(params.productId);
 
   if (!product) {
@@ -134,24 +171,22 @@ export default async function ProductDetail(props: {
               {product.name}
             </h1>
             {product.thumbnail && (
-              <div className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+              <div className="w-full h-[80dvh] rounded-xl overflow-hidden">
                 <img
                   src={product.thumbnail.url}
                   alt={product.thumbnail.alt}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>
             )}
             <div className="grid grid-cols-3 gap-4 mt-4">
               {product.images.map((image) => (
-                <div
-                  key={image.id}
-                  className="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden"
-                >
+                <div key={image.id} className="rounded-lg overflow-hidden">
                   <img
                     src={image.url}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
               ))}
@@ -174,6 +209,7 @@ export default async function ProductDetail(props: {
                 ))}
               </div>
             </section>
+
             {/* Description */}
             <section className="border-t border-gray-200 pt-6">
               <h2 className="text-lg font-medium text-gray-900">Description</h2>
@@ -183,26 +219,13 @@ export default async function ProductDetail(props: {
                   : "No description available"}
               </div>
             </section>
-            {/* SEO Information */}
-            {/* <section className="border-t border-gray-200 pt-6">
-              <h2 className="text-lg font-medium text-gray-900">
-                Product Details
-              </h2>
-              <div className="mt-4 bg-gray-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-500">
-                  <span className="font-medium">Keywords:</span>{" "}
-                  {product.seo.keywords}
-                </p>
-              </div>
-            </section> */}
 
-            {/* Policies */}
+            {/* Delivery Info */}
             <section className="border-t border-gray-200 pt-6">
               <h2 className="sr-only">Delivery and Contact Information</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
                   <dt>
-                    <i className="fa-duotone fa-solid fa-earth-asia mr-1"></i>
                     <span className="mt-4 text-sm font-medium text-gray-900">
                       Delivery Info
                     </span>
@@ -221,17 +244,17 @@ export default async function ProductDetail(props: {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-10 py-3 text-center
-                            font-thin 
-                            bg-btnColor text-white 
-                            hover:bg-btnHoverColor  
-                            transition-colors 
-                            duration-200 
-                            focus:outline-none 
-                            focus:ring-2 
-                            focus:ring-btnColor 
-                            focus:ring-offset-2 
-                            disabled:bg-btnColor/70 
-                            disabled:cursor-not-allowed"
+                          font-thin 
+                          bg-btnColor text-white 
+                          hover:bg-btnHoverColor  
+                          transition-colors 
+                          duration-200 
+                          focus:outline-none 
+                          focus:ring-2 
+                          focus:ring-btnColor 
+                          focus:ring-offset-2 
+                          disabled:bg-btnColor/70 
+                          disabled:cursor-not-allowed"
               >
                 Contact via WhatsApp{" "}
                 <i

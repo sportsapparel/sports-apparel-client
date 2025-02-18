@@ -1,70 +1,21 @@
-"use client";
-import Banner from "@/components/Banner";
-import { ZoomGrid } from "@/components/ZoomImage";
-import { images } from "@/constants/imageUrls";
+import React from "react";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
 
-const About = () => {
-  const columns = [
-    {
-      imageUrl: images.AboutPageZoomGrid1,
-      // backgroundColor: "bg-slate-950",
-      alt: "First column image",
-    },
-    {
-      imageUrl: images.AboutPageZoomGrid2,
-      // backgroundColor: "bg-slate-700",
-      alt: "Second column image",
-    },
-    {
-      imageUrl: images.AboutPageZoomGrid3,
-      // backgroundColor: "bg-slate-800",
-      alt: "Third column image",
-    },
-  ];
-  return (
-    <main className="py-10">
-      <section className="p-10 space-y-2">
-        <h1 className="text-center"> Our Story</h1>
-        <p className="text-xl font-extralight text-center">
-          I&apos;m a paragraph. Click here to add your own text <br />
-          and edit me. Let your users get to know you.
-        </p>
-      </section>
+// Dynamic import with custom loading
+const About = dynamic(() => import("./About"), {
+  loading: () => <Loader />,
+  ssr: true,
+});
 
-      <ZoomGrid
-        className="h-[70dvh] w-full bg-slate-300 text-white grid grid-cols-3"
-        columns={columns}
-      />
-
-      <Banner
-        // ImageRight
-
-        image={images.AboutPageBannerImage1}
-        title="Sustainability"
-        imageAlt="banner"
-        subtitle="From our farms, to our manufacturing and packaging."
-        description="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you."
-      />
-      <Banner
-        ImageRight
-        image={images.AboutPageBannerImage2}
-        title="Our Factories
-"
-        imageAlt="banner"
-        subtitle="We respect people as much as we respect the planet. "
-        description="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you."
-      />
-      <Banner
-        // ImageRight
-        image={images.AboutPageBannerImage3}
-        title="Our Fabrics
-"
-        imageAlt="banner"
-        subtitle="Crafted from recycled and sustainably grown fibers."
-        description="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you."
-      />
-    </main>
-  );
+export const metadata: Metadata = {
+  title: "About",
+  description: "Shop for the latest sports apparel.",
 };
 
-export default About;
+const page = () => {
+  return <About />;
+};
+
+export default page;

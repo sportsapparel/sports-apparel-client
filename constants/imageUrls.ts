@@ -21,4 +21,8 @@ export const images = {
     "https://static.wixstatic.com/media/e4f166_148c5b24b0c14c0787d6fc0c1b1d9d10~mv2_d_7360_4912_s_4_2.jpg/v1/crop/x_2039,y_0,w_3282,h_4912/fill/w_423,h_633,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/GettyImages-1147463141.jpg",
   AboutPageBannerImage3:
     "https://static.wixstatic.com/media/e4f166_d318767fb0d94737892a196dcbffaec9~mv2_d_5262_3508_s_4_2.jpg/v1/fill/w_440,h_660,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/GettyImages-110883483.jpg",
+  ContactPageImage1:
+    "https://static.wixstatic.com/media/e4f166_46dad63779c34374b6d2dae30a6e095f~mv2_d_4792_6720_s_4_2.jpg/v1/fill/w_440,h_660,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/shutterstock_1475686097.jpg",
+  ContactPageImage2:
+    "https://static.wixstatic.com/media/e4f166_afc85337f6e44a0b9079db803ed77231~mv2_d_1476_2207_s_2.jpg/v1/crop/x_0,y_38,w_1476,h_2132/fill/w_423,h_611,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/lauren-fleischmann-emQOLBWQ9lk-unsplash_.jpg",
 };

@@ -1,13 +1,12 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ThemeModeScript } from "flowbite-react";
 import "./font-6/css/all.css";
 import "./font-6/css/sharp-light.css";
 import "./font-6/css/sharp-regular.css";
 import "./font-6/css/sharp-solid.css";
+import "./globals.css";
 // import "./font-6/css/sharp-thin.css";
 // import "./font-6/css/sharp-duotone-light.css";
 // import "./font-6/css/sharp-duotone-regular.css";
@@ -32,23 +31,23 @@ const avenirRoman = localFont({
 // Metadata for SEO
 export const metadata: Metadata = {
   title: {
-    default: "Your App Name",
-    template: "%s | Your App Name", // Dynamic title for child routes
+    default: "Sports Apparel",
+    template: "%s | Sports Apparel", // Dynamic title for child routes
   },
   description: "A modern and responsive web application built with Next.js.",
   keywords: ["Next.js", "React", "TypeScript", "Web Development"],
   authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
   openGraph: {
-    title: "Your App Name",
+    title: "Sports Apparel",
     description: "A modern and responsive web application built with Next.js.",
     url: "https://yourwebsite.com",
-    siteName: "Your App Name",
+    siteName: "Sports Apparel",
     images: [
       {
         url: "https://yourwebsite.com/og-image.jpg", // Add your OpenGraph image
         width: 1200,
         height: 630,
-        alt: "Your App Name",
+        alt: "Sports Apparel",
       },
     ],
     locale: "en_US",
@@ -76,8 +75,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ThemeModeScript />
-
         {/* Preload fonts for better performance */}
         {/* <link
           rel="preload"

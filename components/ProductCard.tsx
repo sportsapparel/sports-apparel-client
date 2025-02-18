@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface ImageWithFallbackProps {
   src: string;
@@ -72,13 +73,25 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="group relative flex flex-col">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 1 % 2 === 0 ? -100 : 100, // Alternate between top and bottom
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{ once: true }} // Ensures animation only happens once
+      transition={{ duration: 1, delay: 1 * 0.1 }} // Add delay for staggered effect
+      className="group relative flex flex-col overflow-hidden"
+    >
       <div className="relative aspect-[3/4]  overflow-hidden w-full ">
         <ImageWithFallback
           src={imageUrl}
           alt={title || "product image"}
           fill
-          className="object-contain"
+          className="object-cover "
           sizes="(max-width: 36rem) 100vw, (max-width: 48rem) 50vw, (max-width: 62rem) 33.33vw, 25vw"
         />
         <div className="absolute bottom-0 left-0 right-0 translate-y-[7vh] transition-transform duration-300 group-hover:translate-y-0">
@@ -93,59 +106,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="mt-4 space-y-1 text-start">
         {title && <h3 className="text-base text-textColor">{title}</h3>}
-        {description && <p className="text-sm text-btnColor">{description}</p>}
+        {description && (
+          <p className="text-sm text-btnColor truncate">{description}</p>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-// Grid Container Component
-interface ProductGridProps {
-  products: ProductCardProps[];
-  className?: string;
-  perPage?: number; // Make perPage configurable
-  initialPerPage?: number; // Optional initial load count
-}
-
-const ProductGrid: React.FC<ProductGridProps> = ({
-  products,
-  className,
-  perPage = 10, // Default to 10 if not specified
-  initialPerPage = perPage, // Default initial load to perPage value
-}) => {
-  const [visibleProducts, setVisibleProducts] = useState(initialPerPage);
-
-  const handleLoadMore = () => {
-    setVisibleProducts((prev) => Math.min(prev + perPage, products.length));
-  };
-
-  const displayedProducts = products.slice(0, visibleProducts);
-  const hasMoreProducts = visibleProducts < products.length;
-  return (
-    <div className="container-c  py-8">
-      <div className={className}>
-        {displayedProducts.map((product, index) => (
-          <ProductCard
-            key={index}
-            imageUrl={product.imageUrl}
-            title={product.title}
-            description={product.description}
-          />
-        ))}
-      </div>
-
-      {hasMoreProducts && (
-        <div className="mt-12 text-center">
-          <button
-            onClick={handleLoadMore}
-            className="bg-btnColor px-8 py-3 text-white rounded hover:bg-btnHoverColor transition-colors duration-300"
-          >
-            Load More
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export { ImageWithFallback, ProductCard, ProductGrid };
+export { ImageWithFallback, ProductCard };

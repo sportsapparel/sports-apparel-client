@@ -99,7 +99,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
       description:
         data.subcategory.metaDescription ?? data.subcategory.description ?? "",
       url: data.subcategory.canonicalUrl ?? "",
-      siteName: "Your Site Name",
+      siteName: "Sports Apparel",
       type: "website",
     },
     twitter: {
