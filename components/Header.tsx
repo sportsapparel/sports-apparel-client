@@ -5,6 +5,7 @@ import { fetchCategoriesData } from "@/lib/apiFuntions";
 import { Category, HeaderProps } from "@/types";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -27,21 +28,25 @@ const Header: React.FC<HeaderProps> = () => {
   // Array of navigation links
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
     { href: "Category", label: "Category" },
     { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
 
   return (
-    <header className="bg-backgroundColor text-textColor py-4 fixed top-0 left-0 right-0 z-50">
+    <header className="bg-backgroundColor text-textColor fixed top-0 left-0 right-0 z-50">
       <div className="container-c flex justify-between items-center bg-backgroundColor text-textColor">
         {/* Logo */}
         <div className="text-2xl font-bold">
           <Link href="/">
-            <span className="hover:text-btnHoverColor transition-colors font-extralight duration-300">
-              MyLogo
-            </span>
+            <Image
+              src={`/Sports.svg`}
+              alt="LOGO "
+              loading="lazy"
+              height={80}
+              width={80}
+            />
           </Link>
         </div>
 
