@@ -6,7 +6,7 @@ const HomeHead = () => {
   return (
     <>
       <section className="bg-backgroundColor container-c my-10 space-y-10 text-center">
-        <h1 className="text-textColor text-lg mb-3">
+        <h1 className="text-textColor text-xl mb-3">
           Customized your own wear
         </h1>
         <Link href={`/shop`}>
