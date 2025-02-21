@@ -7,7 +7,7 @@ const HomeHead = () => {
     <>
       <section className="bg-backgroundColor container-c my-10 space-y-10 text-center">
         <h1 className="text-textColor mb-3">
-          Sustainable. Beautiful. Ethical.
+          Customized your own wear
         </h1>
         <Link href={`/shop`}>
           <Button>Shop Now</Button>
