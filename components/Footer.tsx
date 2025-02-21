@@ -55,11 +55,7 @@ const Footer = () => {
                   Instagram
                 </a>
               </li>
-            {*/  <li>
-                <a href="#" className="text-textColor hover:text-btnHoverColor">
-                  Twitter
-                </a>
-              </li>/*} 
+            
               <li>
                 <a href="#" className="text-textColor hover:text-btnHoverColor">
                   Facebook
