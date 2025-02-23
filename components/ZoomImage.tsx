@@ -22,6 +22,7 @@ const ZoomColumn: React.FC<ZoomColumnProps> = ({
               src={imageUrl}
               alt={alt}
               fill
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"
             />

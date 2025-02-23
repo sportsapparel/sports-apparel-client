@@ -21,7 +21,7 @@ const HeroSection = () => {
           alt="hero-2"
           height={1000}
           width={1000}
-          priority
+          loading="lazy"
         />
       </div>
       <div className="bg-[#FCF6F2]  w-[300px] absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 sm-to-xs:w-full">

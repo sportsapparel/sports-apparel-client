@@ -19,6 +19,7 @@ const Card: React.FC<CardProps> = ({ imageUrl, title }) => {
           // width={300}
           // height={200}
           className="object-cover"
+          loading="lazy"
         />
         <div className="overlay">View</div>
       </div>

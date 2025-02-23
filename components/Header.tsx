@@ -15,8 +15,7 @@ const Header: React.FC<HeaderProps> = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const pathname = usePathname();
-  const { data: categories, loading } =
-    useFetchData<Category[]>(fetchCategoriesData);
+  const { data: categories } = useFetchData<Category[]>(fetchCategoriesData);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };

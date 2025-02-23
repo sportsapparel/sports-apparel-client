@@ -49,6 +49,7 @@ const Banner: React.FC<BannerProps> = ({
             <Image
               src={image}
               alt={imageAlt}
+              loading="lazy"
               className={styles.image}
               height={2000}
               width={2000}
@@ -93,6 +94,7 @@ const Banner: React.FC<BannerProps> = ({
               className={styles.image}
               height={2000}
               width={2000}
+              loading="lazy"
             />
           </motion.div>
         )}

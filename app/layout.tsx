@@ -61,35 +61,48 @@ export const metadata: Metadata = {
     "React",
     "TypeScript",
   ],
-  authors: [{ name: "Sports Apparel", url: "https://yourwebsite.com" }],
+  authors: [{ name: "Syed Muhammad Bilal Gillani" }],
   openGraph: {
-    title: "Sports Apparel",
+    title: "Syed Muhammad Bilal Gillani | Professional Software Engineer",
     description:
-      "Shop the latest sports apparel, gear, and equipment. Fast shipping, great deals, and premium quality for all your sports needs.",
-    url: "https://yourwebsite.com",
-    siteName: "Sports Apparel",
-    // images: [
-    //   {
-    //     url: "https://", // Add your OpenGraph image
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Sports Apparel",
-    //   },
-    // ],
+      "Full-stack developer specializing in modern web technologies and innovative software solutions. View portfolio and professional experience.",
+    url: "https://syed-muhammad-bilal-gillani.vercel.app",
+    siteName: "Syed Muhammad Bilal Gillani Portfolio",
+    images: [
+      {
+        url: "https://syed-muhammad-bilal-gillani.vercel.app/file.svg",
+        width: 1200,
+        height: 630,
+        alt: "Syed Muhammad Bilal Gillani Portfolio Preview",
+      },
+    ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Syed Muhammad Bilal Gillani | Software Engineer & Web Developer",
+    description:
+      "Professional portfolio showcasing full-stack development expertise and innovative web solutions.",
+    creator: "@yourtwitterhandle",
+    images: [
+      "https://syed-muhammad-bilal-gillani.vercel.app/images/twitter-card.jpg",
+    ],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  // themeColor: "#FFFFFF", // Set your theme color
+  alternates: {
+    canonical: "https://syed-muhammad-bilal-gillani.vercel.app",
+  },
 };
 
 // RootLayout Component
