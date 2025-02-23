@@ -1,4 +1,3 @@
-// pages/index.tsx
 "use client";
 import HeroSection from "@/components/HeroSection";
 import HomeHead from "@/components/HomeHead";
@@ -24,35 +23,30 @@ const items = [
   },
 ];
 
-const slides = [
-  {
-    image: images.HomePageSliderImage1,
-    text: `I'm a review. Click to edit me and add text from a \n critic who has evaluated you and your work.`,
-    imageHeight: 200,
-    imageWidht: 200,
-  },
+// const slides = [
+//   {
+//     image: images.HomePageSliderImage1,
+//     text: `I'm a review. Click to edit me and add text from a \n critic who has evaluated you and your work.`,
+//     imageHeight: 200,
+//     imageWidht: 200,
+//   },
 
-  {
-    text: "This is the third slide",
-    image: images.HomePageSliderImage2,
-    imageHeight: 200,
-    imageWidht: 200,
-  },
-  {
-    text: "This is the second slide",
-    image: images.HomePageSliderImage3,
-    imageHeight: 200,
-    imageWidht: 200,
-  },
-];
+//   {
+//     text: "This is the third slide",
+//     image: images.HomePageSliderImage2,
+//     imageHeight: 200,
+//     imageWidht: 200,
+//   },
+//   {
+//     text: "This is the second slide",
+//     image: images.HomePageSliderImage3,
+//     imageHeight: 200,
+//     imageWidht: 200,
+//   },
+// ];
 // const slicedProducts = products.slice(0, 4);
 const Home = () => {
-  const {
-    data: products,
-    loading,
-    error,
-    refetch,
-  } = useFetchData(fetchAllProducts);
+  const { data: products, loading } = useFetchData(fetchAllProducts);
   console.log(products);
   return (
     <>
@@ -85,37 +79,11 @@ const Home = () => {
                 ))
             ) : (
               <div className="flex flex-col items-center justify-center col-span-full p-10">
-                <p className="text-gray-600 text-xs uppercase">
-                  No product found
-                </p>
+                <h4 className="text-gray-600  uppercase">No product found</h4>
               </div>
             )}
           </div>
         </div>
-        {/* <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-        <Carousel
-          leftControl={
-            <>
-              <ChevronLeft size={40} />
-            </>
-          }
-          rightControl={
-            <>
-              <ChevronRight size={40} />
-            </>
-          }
-        >
-          {slides.map((s, i) => (
-            <div
-              key={i}
-              className="flex flex-col  gap-10 items-center text-center"
-            >
-              <Image src={s.image} alt="slider" height={100} width={200} />
-              <h4>{s.text}</h4>
-            </div>
-          ))}
-        </Carousel>
-      </div> */}
       </main>
     </>
   );

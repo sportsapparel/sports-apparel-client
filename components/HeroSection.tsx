@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "./Button";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
           priority
         />
       </div>
-      <div className="bg-slate-300 h-[400px] w-[500px] absolute left-[65%] -translate-x-[40%] top-[70%] -translate-y-1/2">
+      <div className=" h-[400px] w-[500px] absolute left-[65%] -translate-x-[40%] top-[70%] -translate-y-1/2">
         <Image
           src="https://static.wixstatic.com/media/e4f166_eb8875c8a7814dbab13738710a15c9d6~mv2_d_5616_3744_s_4_2.jpg/v1/crop/x_938,y_420,w_3740,h_2892/fill/w_713,h_551,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/GettyImages-687511962.jpg"
           alt="hero-2"
@@ -30,7 +31,9 @@ const HeroSection = () => {
             We are a team of passionate designers and makers who are dedicated
             to creating beautiful and functional products.
           </p>
-          <Button>Learn More</Button>
+          <Button>
+            <Link href={"/about"}>Learn More</Link>
+          </Button>
         </div>
       </div>
     </div>

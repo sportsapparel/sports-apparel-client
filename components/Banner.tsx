@@ -69,7 +69,7 @@ const Banner: React.FC<BannerProps> = ({
           transition={{ duration: 1, delay: 1 * 0.1 }} // Add delay for staggered effect
           className={styles.contentContainer}
         >
-          <h2 className="">{title}</h2>
+          <h2>{title}</h2>
           <p className="text-lg font-light">{subtitle}</p>
           <p className="text-base font-extralight ">{description}</p>
         </motion.div>

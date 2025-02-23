@@ -22,7 +22,7 @@ const About = () => {
     },
   ];
   return (
-    <main className="py-10">
+    <main className="pb-10">
       <section className="p-10 space-y-2">
         <h1 className="text-center"> Our Story</h1>
         <p className="text-xl font-extralight text-center">

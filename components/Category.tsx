@@ -23,7 +23,7 @@ const CategorySection: React.FC<CategoryProps> = ({
           <Carousel link={link} images={data} />
         ) : (
           <div className="flex flex-col items-center justify-center w-full h-40 bg-gray-50 rounded-lg">
-            <p className="text-gray-600 text-xs uppercase">No {title} found</p>
+            <h4 className="text-gray-600  uppercase">No {title} found</h4>
           </div>
         )}
       </div>
@@ -40,9 +40,6 @@ const CarouselSkeleton = () => {
           <div key={index} className="flex flex-col items-center animate-pulse">
             {/* Image Skeleton */}
             <div className="w-[250px] h-[150px] bg-gray-300 rounded-lg"></div>
-
-            {/* Text Skeleton */}
-            {/* <div className="mt-2 w-[120px] h-4 bg-gray-300 rounded"></div> */}
           </div>
         ))}
       </div>

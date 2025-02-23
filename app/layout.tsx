@@ -34,22 +34,48 @@ export const metadata: Metadata = {
     default: "Sports Apparel",
     template: "%s | Sports Apparel", // Dynamic title for child routes
   },
-  description: "A modern and responsive web application built with Next.js.",
-  keywords: ["Next.js", "React", "TypeScript", "Web Development"],
-  authors: [{ name: "Your Name", url: "https://yourwebsite.com" }],
+  description:
+    "Shop the latest sports apparel, gear, and equipment. Fast shipping, great deals, and premium quality for all your sports needs.",
+  keywords: [
+    "sports apparel",
+    "sports",
+    "bat",
+    "shirts",
+    "t shirts",
+    "table",
+    "shipping",
+    "sports gear",
+    "sports equipment",
+    "athletic wear",
+    "sports clothing",
+    "sports shoes",
+    "team uniforms",
+    "sports accessories",
+    "fitness gear",
+    "outdoor sports",
+    "sports discounts",
+    "fast shipping sports gear",
+    "online sports store",
+    "sports ecommerce",
+    "Next.js",
+    "React",
+    "TypeScript",
+  ],
+  authors: [{ name: "Sports Apparel", url: "https://yourwebsite.com" }],
   openGraph: {
     title: "Sports Apparel",
-    description: "A modern and responsive web application built with Next.js.",
+    description:
+      "Shop the latest sports apparel, gear, and equipment. Fast shipping, great deals, and premium quality for all your sports needs.",
     url: "https://yourwebsite.com",
     siteName: "Sports Apparel",
-    images: [
-      {
-        url: "https://yourwebsite.com/og-image.jpg", // Add your OpenGraph image
-        width: 1200,
-        height: 630,
-        alt: "Sports Apparel",
-      },
-    ],
+    // images: [
+    //   {
+    //     url: "https://", // Add your OpenGraph image
+    //     width: 1200,
+    //     height: 630,
+    //     alt: "Sports Apparel",
+    //   },
+    // ],
     locale: "en_US",
     type: "website",
   },
