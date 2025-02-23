@@ -60,35 +60,26 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "TypeScript",
-  ],
-  authors: [{ name: "Syed Muhammad Bilal Gillani" }],
+  ].join(", "),
+  authors: [{ name: "Sports Apparel" }],
   openGraph: {
-    title: "Syed Muhammad Bilal Gillani | Professional Software Engineer",
+    title: "Sports Apparel | Professional Software Engineer",
     description:
       "Full-stack developer specializing in modern web technologies and innovative software solutions. View portfolio and professional experience.",
-    url: "https://syed-muhammad-bilal-gillani.vercel.app",
-    siteName: "Syed Muhammad Bilal Gillani Portfolio",
+    url: "https://sportsapparel.vercel.app",
+    siteName: "Sports Apparel",
     images: [
       {
-        url: "https://syed-muhammad-bilal-gillani.vercel.app/file.svg",
+        url: "https://sportsapparel.vercel.app/favicon.png",
         width: 1200,
         height: 630,
-        alt: "Syed Muhammad Bilal Gillani Portfolio Preview",
+        alt: "Sports Apparel Portfolio Preview",
       },
     ],
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Syed Muhammad Bilal Gillani | Software Engineer & Web Developer",
-    description:
-      "Professional portfolio showcasing full-stack development expertise and innovative web solutions.",
-    creator: "@yourtwitterhandle",
-    images: [
-      "https://syed-muhammad-bilal-gillani.vercel.app/images/twitter-card.jpg",
-    ],
-  },
+
   robots: {
     index: true,
     follow: true,
@@ -101,7 +92,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://syed-muhammad-bilal-gillani.vercel.app",
+    canonical: "https://sportsapparel.vercel.app/",
   },
 };
 
