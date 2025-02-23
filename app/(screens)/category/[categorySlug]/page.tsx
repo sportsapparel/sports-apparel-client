@@ -44,7 +44,6 @@ const Category = () => {
     data: products = {} as any,
     loading: productLoading,
     // error,
-    refetch: productRefetch,
   } = useFetchData(
     fetchProducts ?? (() => Promise.reject(new Error("Invalid user ID")))
   );
@@ -112,9 +111,7 @@ const Category = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center col-span-full p-10">
-                <p className="text-gray-600 text-xs uppercase">
-                  No product found
-                </p>
+                <h4 className="text-gray-600  uppercase">No product found</h4>
               </div>
             )}
           </div>

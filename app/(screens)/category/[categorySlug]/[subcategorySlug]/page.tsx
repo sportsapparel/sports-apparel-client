@@ -226,7 +226,7 @@ export default async function SubCategoryPage(props: PageProps) {
 
       {data.products.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500">
+          <h4 className="text-gray-600  uppercase">
             No products found in this category.{" "}
             <i
               className="fa-duotone fa-solid fa-face-spiral-eyes"
@@ -238,7 +238,7 @@ export default async function SubCategoryPage(props: PageProps) {
                 } as React.CSSProperties
               }
             ></i>
-          </p>
+          </h4>
         </div>
       )}
     </div>
