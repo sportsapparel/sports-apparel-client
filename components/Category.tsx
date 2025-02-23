@@ -22,7 +22,7 @@ const CategorySection: React.FC<CategoryProps> = ({
         ) : data?.length > 0 ? (
           <Carousel link={link} images={data} />
         ) : (
-          <div className="flex flex-col items-center justify-center w-full h-40 bg-gray-50 rounded-lg">
+          <div className="flex flex-col items-center justify-center w-full h-40  rounded-lg">
             <h4 className="text-gray-600  uppercase">No {title} found</h4>
           </div>
         )}

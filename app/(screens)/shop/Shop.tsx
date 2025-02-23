@@ -100,10 +100,8 @@ const Shop = () => {
                   />
                 ))
               ) : (
-                <div className="flex flex-col items-center justify-center col-span-full p-10">
-                  <p className="text-gray-600 text-xs uppercase">
-                    No product found
-                  </p>
+                <div className="flex flex-col items-center justify-center col-span-full p-10 w-full h-40 bg-gray-50 rounded-lg">
+                  <h4 className="text-gray-600  uppercase">No product found</h4>
                 </div>
               )}
             </div>
